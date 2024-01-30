@@ -2,24 +2,24 @@
 #include <windows.h>
 #include <iostream>
 using namespace std;
-
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 class pos{
 	public:
 	int choice;
 	
 	
     int menu(){
-	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(h, 6);
+	//blue
+    SetConsoleTextAttribute(h, 2);
     cout << "                     ------[1]--------       ------[2]------       ------[3]------     ------[4]-------     \n";
     cout << "                     | Fried Chicken |       |    burger   |       |    Drinks   |     | French Fries |     \n";
     cout << "                     -----------------       ---------------       ---------------     ----------------     \n";
-    SetConsoleTextAttribute(h, 10);
+    SetConsoleTextAttribute(h, 6);
     cout << "                     ------[5]-------       ------[6]------       ------[7]------      ------[8]------     \n";
     cout << "                     |    Snacks    |       |    Pizza    |       |    Tacos    |      |  Sandwiches |     \n";
     cout << "                     ----------------       ---------------       ---------------      ---------------      \n";
     
-    SetConsoleTextAttribute(h, 12);
+    SetConsoleTextAttribute(h, 4);
     cout << "                                   ------[9]-------      ----[10]----    ----[0]----      \n";
     cout << "                                   |  Reservation |      |  Receipt |    |   Exit  |         \n";
     cout << "                                   ----------------      -----------     -----------   \n";
@@ -28,17 +28,18 @@ class pos{
     SetConsoleTextAttribute(h, 12);
     cout << "	Enter your choice: ";
 	cin >> choice;
+	SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);	
     return 0;		
 	}
 	
 
 	int transaction(){
-	    
+	    SetConsoleTextAttribute(h, 10);
 		char transacloop;
 		do{
 
 		switch(choice){
-		SetConsoleTextAttribute(h, 10);
+		
 		case 1:
 		cout << endl;
 		cout << "		Choice: Fried Chicken" << endl;
@@ -56,6 +57,7 @@ class pos{
 		cout << "Invalid choice!\n";
 		
 		break;
+		SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		}
 		cout << endl;
 		SetConsoleTextAttribute(h, 12);
