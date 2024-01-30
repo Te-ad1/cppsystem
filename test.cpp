@@ -24,7 +24,8 @@ class pos{
     cout << "                                   |  Reservation |      |  Receipt |    |   Exit  |         \n";
     cout << "                                   ----------------      -----------     -----------   \n";
     
-    SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    
+    SetConsoleTextAttribute(h, 12);
     cout << "	Enter your choice: ";
 	cin >> choice;
     return 0;		
@@ -37,7 +38,7 @@ class pos{
 		do{
 
 		switch(choice){
-		
+		SetConsoleTextAttribute(h, 10);
 		case 1:
 		cout << endl;
 		cout << "		Choice: Fried Chicken" << endl;
@@ -57,6 +58,7 @@ class pos{
 		break;
 		}
 		cout << endl;
+		SetConsoleTextAttribute(h, 12);
 		cout << "	Enter your Category choice: ";
 		cin >> choice;
 		
@@ -66,7 +68,7 @@ class pos{
 		cin >> transacloop;
 		}while(transacloop == 'y' || transacloop == 'y');
 		
-		
+	   SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);	
 	    return 0;	
 	
 	}
