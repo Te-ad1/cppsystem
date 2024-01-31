@@ -1,6 +1,7 @@
 
 #include <windows.h>
 #include <iostream>
+#include <unistd.h> 
 using namespace std;
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 class pos{
@@ -27,7 +28,7 @@ class pos{
 		cin >> password;
 		
 		if(name == "admin" && password == 123){
-			cout << "			Welcome admin" << endl;
+			cout << "						Welcome admin!!" << endl;
 		}else{
 			cout << "			Wrong username or password!!" << endl;
 			return 0;
@@ -37,6 +38,8 @@ class pos{
 		cout << endl;
 		
 	}
+
+	
     int menu(){
 	//blue
     SetConsoleTextAttribute(h, 2);
@@ -126,6 +129,7 @@ int main()
     
     pos myObj;
     myObj.verification();
+ 
     myObj.menu();
     myObj.transaction();
     return 0;
