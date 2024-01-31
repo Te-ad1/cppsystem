@@ -6,8 +6,37 @@ HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 class pos{
 	public:
 	int choice;
+	int quantity;
+	int totalcost;
 	
-	
+	int verification(){
+		string name;
+		int password;
+		SetConsoleTextAttribute(h, 10);
+		cout << " 					==============================" << endl;
+		cout << "                                        Welcome to The Heritage Grill. " << endl;
+		cout << " 					============================= " << endl;
+		
+		
+		
+		cout << endl;
+		cout << endl;
+		cout << "		Enter your username: ";
+		cin >> name;
+		cout << "		Enter your password: ";
+		cin >> password;
+		
+		if(name == "admin" && password == 123){
+			cout << "			Welcome admin" << endl;
+		}else{
+			cout << "			Wrong username or password!!" << endl;
+			return 0;
+		}
+			
+		cout << endl;
+		cout << endl;
+		
+	}
     int menu(){
 	//blue
     SetConsoleTextAttribute(h, 2);
@@ -25,7 +54,7 @@ class pos{
     cout << "                                   ----------------      -----------     -----------   \n";
     
     
-    SetConsoleTextAttribute(h, 12);
+    SetConsoleTextAttribute(h, 10);
     cout << "	Enter your choice: ";
 	cin >> choice;
 	SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);	
@@ -36,6 +65,8 @@ class pos{
 	int transaction(){
 	    SetConsoleTextAttribute(h, 10);
 		char transacloop;
+		char chickCategory;
+		
 		do{
 
 		switch(choice){
@@ -50,7 +81,20 @@ class pos{
 		cout << "		[b]Chicken McNuggets (McDonald's))			85pesos" << endl;
 		cout << "		[c]Chickenjoy (Jollibee))			        75pesos" << endl;
 		cout << "		[d]Spicy Chicken Sandwich (Chick-fil-A))	92pesos" << endl;
+		cout << "	Enter your choice: ";
+		cin >> chickCategory;
 		
+		if(chickCategory == 'a'){
+		
+		cout << "		Choice: Original Recipe Chicken (KFC)			55pesos" << endl;
+		cout << "\tEnter quantity: ";
+		cin >> quantity;
+		
+		totalcost = quantity * 55;
+		
+		cout << "		Total cost: " <<totalcost;
+		
+		}
 		break;
 		
 		default:
@@ -60,9 +104,8 @@ class pos{
 		SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		}
 		cout << endl;
-		SetConsoleTextAttribute(h, 12);
-		cout << "	Enter your Category choice: ";
-		cin >> choice;
+		SetConsoleTextAttribute(h, 10);
+		
 		
 
 	    //loop for transaction
@@ -82,8 +125,8 @@ int main()
 {
     
     pos myObj;
+    myObj.verification();
     myObj.menu();
     myObj.transaction();
     return 0;
 }
-
