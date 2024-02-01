@@ -1,4 +1,5 @@
-
+//tead 2/2/2024
+//last 12:14am
 #include <windows.h>
 #include <iostream>
 #include <unistd.h>
@@ -145,11 +146,12 @@ class pos{
 		cin >> questdiscount;
 			
 			if(questdiscount == 'y' || questdiscount == 'Y'){
+				cout << endl;
 				cout << "	Type of discount: " <<endl;
 				cout << "		[1]Senior citizen Discount:  20% " << endl;
 				cout << "		[2]PWD Discount:  40% " << endl;
 				cout << endl;
-				cout << "	Enter your choice: " << endl;
+				cout << "	Enter your choice: ";
 				cin >> discount;
 				
 				switch(discount){
@@ -162,9 +164,11 @@ class pos{
 					break;
 					
 					default:
-						cout << "Pleas enter a valid discount!! " << endl;
+						cout << "Please enter a valid discount!! " << endl;
 					break;
 				}
+			}else{
+				totalcost = quantity * 55;
 			}	
 		
 		
