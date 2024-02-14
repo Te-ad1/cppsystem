@@ -1,5 +1,7 @@
 //tead 2/2/2024
 //last 12:14am
+#include <sstream> // 
+#include <string>
 #include <windows.h>
 #include <iostream>
 #include <unistd.h>
@@ -7,9 +9,18 @@
 #include <stdlib.h> 
 #include <ctime>
 using namespace std;
+std::string intToString(int value) {
+    std::stringstream ss;
+    ss << value;
+    return ss.str();
+}
+
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+string cart;
 class pos{
 	public:
+	int totalAmount;
+	
 	int choice;
 	int quantity;
 	int totalcost;
@@ -167,16 +178,192 @@ class pos{
 						cout << "Please enter a valid discount!! " << endl;
 					break;
 				}
+				
+				
+				cart += "Name: Original Recipe Chicken (KFC)\nQuantity: " + intToString(quantity) +
+        "\nDiscount: " + intToString(discount) +
+        "\nPrice: " + intToString(totalcost) + "%" +
+        "\n______________________________\n";
+
+
 			}else{
 				totalcost = quantity * 55;
 			}	
 		
 		
+	
 		
-		cout << "		Total cost: " <<totalcost;
 		
+		
+		
+		}else if(chickCategory == 'b'){
+		cout << "		Choice: Chicken McNuggets (McDonald's)			85pesos" << endl;
+		
+		cout << "\tEnter quantity: ";
+		cin >> quantity;
+		
+		cout << "\tDo you have a discount:(Y/N): ";
+		cin >> questdiscount;
+			
+			if(questdiscount == 'y' || questdiscount == 'Y'){
+				cout << endl;
+				cout << "	Type of discount: " <<endl;
+				cout << "		[1]Senior citizen Discount:  20% " << endl;
+				cout << "		[2]PWD Discount:  40% " << endl;
+				cout << endl;
+				cout << "	Enter your choice: ";
+				cin >> discount;
+				
+				switch(discount){
+					case 1:
+						totalcost = quantity * 85 - (quantity * 85 * 0.20);
+					break;
+					
+					case 2:
+						totalcost = quantity * 85 - (quantity * 85 * 0.40);
+					break;
+					
+					default:
+						cout << "Please enter a valid discount!! " << endl;
+					break;
+				}
+			}else{
+				totalcost = quantity * 85;
+			}	
+			cout << "		Total cost: " <<totalcost;	
 		}
+		
+		
+		
+		else if(chickCategory == 'c'){
+		cout << "		[c]Chickenjoy (Jollibee)			        75pesos" << endl;
+		
+		cout << "\tEnter quantity: ";
+		cin >> quantity;
+		
+		cout << "\tDo you have a discount:(Y/N): ";
+		cin >> questdiscount;
+			
+			if(questdiscount == 'y' || questdiscount == 'Y'){
+				cout << endl;
+				cout << "	Type of discount: " <<endl;
+				cout << "		[1]Senior citizen Discount:  20% " << endl;
+				cout << "		[2]PWD Discount:  40% " << endl;
+				cout << endl;
+				cout << "	Enter your choice: ";
+				cin >> discount;
+				
+				switch(discount){
+					case 1:
+						totalcost = quantity * 75 - (quantity * 75 * 0.20);
+					break;
+					
+					case 2:
+						totalcost = quantity * 75 - (quantity * 75 * 0.40);
+					break;
+					
+					default:
+						cout << "Please enter a valid discount!! " << endl;
+					break;
+				}
+			}else{
+				totalcost = quantity * 75;
+			}	
+			cout << "		Total cost: " <<totalcost;	
+		}
+		
+		
+		else if(chickCategory == 'd'){
+		cout << "		[d]Spicy Chicken Sandwich (Chick-fil-A) 	92pesos" << endl;
+		
+		cout << "\tEnter quantity: ";
+		cin >> quantity;
+		
+		cout << "\tDo you have a discount:(Y/N): ";
+		cin >> questdiscount;
+			
+			if(questdiscount == 'y' || questdiscount == 'Y'){
+				cout << endl;
+				cout << "	Type of discount: " <<endl;
+				cout << "		[1]Senior citizen Discount:  20% " << endl;
+				cout << "		[2]PWD Discount:  40% " << endl;
+				cout << endl;
+				cout << "	Enter your choice: ";
+				cin >> discount;
+				
+				switch(discount){
+					case 1:
+						totalcost = quantity * 92 - (quantity * 92 * 0.20);
+					break;
+					
+					case 2:
+						totalcost = quantity * 92 - (quantity * 92 * 0.40);
+					break;
+					
+					default:
+						cout << "Please enter a valid discount!! " << endl;
+					break;
+				}
+			}else{
+				totalcost = quantity * 75;
+			}	
+				
+				
+		}
+		
 		break;
+		
+		case 2:
+			
+			cout << "=================" << endl;
+    		cout << "|    Receipt    |" << endl;
+   			cout << "=================" << endl;
+    		cout << cart;
+    		cout << "Total Amount: " << totalcost << " pesos" << endl;
+    		cout << endl;
+    		cout << endl;
+    		
+    		cout << "=================" << endl;
+    		cout << "|  paymentOption |" << endl;
+    		cout << "=================" << endl;
+
+    		cout << endl;
+    		cout << "Choose payment option:" << endl;
+    cout << "[1] Cash" << endl;
+    cout << "[2] Credit Card" << endl;
+
+    int paymentOption;
+    cin >> paymentOption;
+
+    switch (paymentOption) {
+        case 1:
+            cout << "Please provide cash: ";
+            float cash;
+            cin >> cash;
+
+            if (cash >= totalAmount) {
+                cout << "Change: " << cash - totalAmount << " pesos" << endl;
+                cout << "Thank you for your purchase!" << endl;
+            } else {
+                cout << "Insufficient cash. Transaction canceled." << endl;
+            }
+            break;
+
+        case 2:
+            cout << "Processing credit card payment..." << endl;
+            // Add credit card processing logic here
+            cout << "Thank you for your purchase!" << endl;
+            break;
+
+        default:
+            cout << "Invalid payment option." << endl;
+            break;
+    }
+    
+		
+		break;
+		
+		
 		
 		default:
 		cout << "Invalid choice!\n";
@@ -206,7 +393,6 @@ int main()
 {
     
     pos myObj;
-    myObj.animation();
     myObj.verification();
  
     myObj.menu();
