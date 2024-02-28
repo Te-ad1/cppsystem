@@ -1,5 +1,4 @@
-//tead 2/2/2024
-//last 12:14am
+//latest
 #include <sstream> // 
 #include <string>
 #include <windows.h>
@@ -101,7 +100,7 @@ class pos{
     cout << "					  Current time: " << date_time << endl;
     cout << endl;
     cout << "                     ------[1]--------       ------[2]------       ------[3]------     ------[4]-------     \n";
-    cout << "                     | Fried Chicken |       |    burger   |       |    Drinks   |     | French Fries |     \n";
+    cout << "                     | Fried Chicken |       |   Receipt    |       |    Drinks   |     | French Fries |     \n";
     cout << "                     -----------------       ---------------       ---------------     ----------------     \n";
     SetConsoleTextAttribute(h, 6);
     cout << "                     ------[5]-------       ------[6]------       ------[7]------      ------[8]------     \n";
@@ -179,24 +178,16 @@ class pos{
 					break;
 				}
 				
-				
-				cart += "Name: Original Recipe Chicken (KFC)\nQuantity: " + intToString(quantity) +
-        "\nDiscount: " + intToString(discount) +
-        "\nPrice: " + intToString(totalcost) + "%" +
-        "\n______________________________\n";
 
 
 			}else{
 				totalcost = quantity * 55;
-			}	
-		
-		
-	
-		
-		
-		
-		
-		}else if(chickCategory == 'b'){
+			}
+		totalAmount += totalcost;	
+		cout << "		Total cost: " <<totalcost;	
+		 cart += "Name: Original Recipe Chicken (KFC)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
+		}
+		else if(chickCategory == 'b'){
 		cout << "		Choice: Chicken McNuggets (McDonald's)			85pesos" << endl;
 		
 		cout << "\tEnter quantity: ";
@@ -229,8 +220,10 @@ class pos{
 				}
 			}else{
 				totalcost = quantity * 85;
+				
 			}	
 			cout << "		Total cost: " <<totalcost;	
+			 cart += "Name: Chicken McNuggets (McDonald's)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
 		}
 		
 		
@@ -270,6 +263,7 @@ class pos{
 				totalcost = quantity * 75;
 			}	
 			cout << "		Total cost: " <<totalcost;	
+			 cart += "Name: Chickenjoy (Jollibee)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
 		}
 		
 		
@@ -305,23 +299,24 @@ class pos{
 					break;
 				}
 			}else{
-				totalcost = quantity * 75;
+				   totalAmount += totalcost;
 			}	
 				
-				
+				   cout << "		Total cost: " <<totalcost;	
+				           cart += "Name: Spicy Chicken Sandwich (Chick-fil-A)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
 		}
 		
 		break;
 		
 		case 2:
 			
-			cout << "=================" << endl;
-    		cout << "|    Receipt    |" << endl;
-   			cout << "=================" << endl;
-    		cout << cart;
-    		cout << "Total Amount: " << totalcost << " pesos" << endl;
-    		cout << endl;
-    		cout << endl;
+		cout << "=================" << endl;
+    cout << "|    Receipt    |" << endl;
+    cout << "=================" << endl;
+    cout << cart;
+    cout << "Total Amount: " << totalAmount << " pesos" << endl;
+    cout << endl;
+    cout << endl;
     		
     		cout << "=================" << endl;
     		cout << "|  paymentOption |" << endl;
@@ -386,16 +381,23 @@ class pos{
 	
 	}
 	
+	
 };
 
 
 int main()
 {
-    
+    char transacloop;
     pos myObj;
     myObj.verification();
  
-    myObj.menu();
-    myObj.transaction();
+     do {
+        myObj.menu();
+        myObj.transaction();
+
+        cout << "Do you want to set another transaction? (y/n): ";
+        cin >> transacloop;
+    } while (transacloop == 'y' || transacloop == 'Y');
+
     return 0;
 }
