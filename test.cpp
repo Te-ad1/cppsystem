@@ -18,7 +18,7 @@ HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 string cart;
 class pos{
 	public:
-	int totalAmount;
+	float totalAmount = 0;
 	
 	int choice;
 	int quantity;
@@ -93,7 +93,7 @@ class pos{
 	
     int menu(){
 	//blue
-    SetConsoleTextAttribute(h, 2);
+    SetConsoleTextAttribute(h, 10);
     time_t now = time(0);
     char* date_time = ctime(&now);
 
@@ -152,78 +152,37 @@ class pos{
 		cout << "\tEnter quantity: ";
 		cin >> quantity;
 		
-		cout << "\tDo you have a discount:(Y/N): ";
-		cin >> questdiscount;
-			
-			if(questdiscount == 'y' || questdiscount == 'Y'){
-				cout << endl;
-				cout << "	Type of discount: " <<endl;
-				cout << "		[1]Senior citizen Discount:  20% " << endl;
-				cout << "		[2]PWD Discount:  40% " << endl;
-				cout << endl;
-				cout << "	Enter your choice: ";
-				cin >> discount;
-				
-				switch(discount){
-					case 1:
-						totalcost = quantity * 55 - (quantity * 55 * 0.20);
-					break;
-					
-					case 2:
-						totalcost = quantity * 55 - (quantity * 55 * 0.40);
-					break;
-					
-					default:
-						cout << "Please enter a valid discount!! " << endl;
-					break;
-				}
-				
-
-
-			}else{
-				totalcost = quantity * 55;
-			}
-		totalAmount += totalcost;	
+		totalcost= quantity * 55;
+		
+		cout << "	Enter Discount (%): ";
+		cin >> discount;
+		
+		totalcost -= (totalcost * discount / 100);
+	
+		
+		cart += "Name: Original Recipe Chicken (KFC)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
 		cout << "		Total cost: " <<totalcost;	
-		 cart += "Name: Original Recipe Chicken (KFC)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
+		totalAmount += totalcost;
+		
 		}
 		else if(chickCategory == 'b'){
 		cout << "		Choice: Chicken McNuggets (McDonald's)			85pesos" << endl;
 		
-		cout << "\tEnter quantity: ";
+			cout << "\tEnter quantity: ";
 		cin >> quantity;
 		
-		cout << "\tDo you have a discount:(Y/N): ";
-		cin >> questdiscount;
-			
-			if(questdiscount == 'y' || questdiscount == 'Y'){
-				cout << endl;
-				cout << "	Type of discount: " <<endl;
-				cout << "		[1]Senior citizen Discount:  20% " << endl;
-				cout << "		[2]PWD Discount:  40% " << endl;
-				cout << endl;
-				cout << "	Enter your choice: ";
-				cin >> discount;
-				
-				switch(discount){
-					case 1:
-						totalcost = quantity * 85 - (quantity * 85 * 0.20);
-					break;
-					
-					case 2:
-						totalcost = quantity * 85 - (quantity * 85 * 0.40);
-					break;
-					
-					default:
-						cout << "Please enter a valid discount!! " << endl;
-					break;
-				}
-			}else{
-				totalcost = quantity * 85;
-				
-			}	
-			cout << "		Total cost: " <<totalcost;	
-			 cart += "Name: Chicken McNuggets (McDonald's)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
+		totalcost= quantity * 85;
+		
+		cout << "	Enter Discount (%): ";
+		cin >> discount;
+		
+		totalcost -= (totalcost * discount / 100);
+	
+		
+		cart += "Name: Chicken McNuggets (McDonald's) \nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
+		cout << "		Total cost: " <<totalcost;	
+		totalAmount += totalcost;
+		
 		}
 		
 		
@@ -267,46 +226,48 @@ class pos{
 		}
 		
 		
-		else if(chickCategory == 'd'){
-		cout << "		[d]Spicy Chicken Sandwich (Chick-fil-A) 	92pesos" << endl;
-		
-		cout << "\tEnter quantity: ";
-		cin >> quantity;
-		
-		cout << "\tDo you have a discount:(Y/N): ";
-		cin >> questdiscount;
-			
-			if(questdiscount == 'y' || questdiscount == 'Y'){
-				cout << endl;
-				cout << "	Type of discount: " <<endl;
-				cout << "		[1]Senior citizen Discount:  20% " << endl;
-				cout << "		[2]PWD Discount:  40% " << endl;
-				cout << endl;
-				cout << "	Enter your choice: ";
-				cin >> discount;
-				
-				switch(discount){
-					case 1:
-						totalcost = quantity * 92 - (quantity * 92 * 0.20);
-					break;
-					
-					case 2:
-						totalcost = quantity * 92 - (quantity * 92 * 0.40);
-					break;
-					
-					default:
-						cout << "Please enter a valid discount!! " << endl;
-					break;
-				}
-			}else{
-				   totalAmount += totalcost;
-			}	
-				
-				   cout << "		Total cost: " <<totalcost;	
-				           cart += "Name: Spicy Chicken Sandwich (Chick-fil-A)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
-		}
-		
-		break;
+		else if (chickCategory == 'd') {
+        cout << "[d]Spicy Chicken Sandwich (Chick-fil-A) 92 pesos" << endl;
+
+        cout << "\tEnter quantity: ";
+        cin >> quantity;
+
+        cout << "\tDo you have a discount:(Y/N): ";
+        cin >> questdiscount;
+
+        if (questdiscount == 'y' || questdiscount == 'Y') {
+            cout << endl;
+            cout << "Type of discount: " << endl;
+            cout << "[1] Senior citizen Discount: 20% " << endl;
+            cout << "[2] PWD Discount: 40% " << endl;
+            cout << endl;
+            cout << "Enter your choice: ";
+            cin >> discount;
+
+            switch (discount) {
+            case 1:
+                totalcost = quantity * 92 - (quantity * 92 * 0.20);
+                break;
+
+            case 2:
+                totalcost = quantity * 92 - (quantity * 92 * 0.40);
+                break;
+
+            default:
+                cout << "Please enter a valid discount!! " << endl;
+                break;
+            }
+        }
+        else {
+            totalcost = quantity * 92;
+        }
+        
+        totalAmount += totalcost; // Accumulate total cost
+        cout << "Total cost: " << totalcost << endl;
+        cart += "Name: Spicy Chicken Sandwich (Chick-fil-A)\nQuantity: " + intToString(quantity) + "\nPrice: " + intToString(totalcost) + " pesos\n______________________________\n";
+    }
+
+    break;
 		
 		case 2:
 			
@@ -391,13 +352,15 @@ int main()
     pos myObj;
     myObj.verification();
  
-     do {
-        myObj.menu();
-        myObj.transaction();
+    do {
+    myObj.menu();
+    myObj.transaction();
 
-        cout << "Do you want to set another transaction? (y/n): ";
-        cin >> transacloop;
-    } while (transacloop == 'y' || transacloop == 'Y');
+    cout << "Do you want to set another transaction? (y/n): ";
+    cin >> transacloop;
+} while (transacloop == 'y' || transacloop == 'Y');
 
-    return 0;
+
+    
 }
+
